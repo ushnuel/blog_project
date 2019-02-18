@@ -1,0 +1,42 @@
+{% extends 'dryApp/base.html' %}
+
+{% block body_block %}
+
+<div class="container mt-3">
+  <p>Gihgr is an on-demand task ordering website that handles your odd jobs and errands, be it in your home, office or place of work. <br>Everyday
+    work is important, but also time consuming. Do not worry, we can help out. Have a long to-do list? Let us do your dry cleaning, take packages to the
+    post office, pay your electricity bills, or do your shopping. We connect you to Bonny best dry cleaning services, and deliver it to your doorstep for just a token.
+    We deliver just about everything, just give us a call. Get more done in less time as you connect with Gihgr.</p>
+
+    <h5 style="font-family:'Anton',cursive;">OUR SERVICES</h5>
+    <p>Gihgr offers so many services which include but not limited to the following:</p>
+    <ul style="list-style:none; padding-left:0px;">
+      <li><span><i class="far fa-check-circle"></i></span> Electricity bill payment</li>
+      <li><span><i class="far fa-check-circle"></i></span> Errands by Appointment</li>
+      <li><span><i class="far fa-check-circle"></i></span> Legal document delivery to your doorstep</li>
+      <li><span><i class="far fa-check-circle"></i></span> Shopping from our trusted supermarkets</li>
+      <li><span><i class="far fa-check-circle"></i></span> laundry services neatly done and delivered</li>
+    </ul>
+
+    <p>Our office is located along Abalamabie Road, adjacent to Oil and Gas Polythecnic Bonny Island. <br>
+    We operate from <strong>7am - 6pm Everyday</strong>, and our service is pay on delivery just to serve you better</p>
+
+    <h5 style="font-family:'Anton',cursive;">TEAM</h5>
+    <div class="client_details">
+      {% load static %}
+      <img src="{% static 'image/profile.jpg' %}" alt="" style="width:110px; height:130px; border-radius:10%;">
+      <p style="color:#1F2121;">Emmanuel Chinazom is a web developer and a social enterprenuer. A graduate of University of Nigeria, Nsukka, studied Electrical Engineering.
+      He is committed in making life simpler and easier whenever he finds himself and very passionate about it; hence the idea of gihgr. <br>His philosophy - never give up
+      your dream no matter what life throws at you, you will achieve it.</p>
+    </div>
+</div>
+
+
+
+<div class="end_footer" style="box-shadow: 0 50vh 0 50vh #1F2121;">
+  <div class="container">
+        &copy; 2019 All rights reserved. Gihgr Errand Service, Bonny Island
+  </div>
+</div>
+
+{% endblock %}
