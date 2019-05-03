@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block body_block %}
+  <div class="jumbotron centerstage">
+    <h1>Add a new comment</h1>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" class="btn btn-primary" value="Add">
+    </form>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'blog/base.html' %}
+
+{% block body_block %}
+  <div  class="loader posttitle" >
+    <h1>{{ post.title }}</h1>
+  </div>
+  {% if post.date_published %}
+    <div class="date postdate">
+      {{post.date_published }}
+    </div>
+  {% else %}
+    <a class="btn btn-secondary" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+  {% endif %}
+
+<p class="postcontent">{{ post.text|safe|linebreaksbr}}</p>
+{% if user.is_authenticated %}
+  <a class="btn btn-warning" href="{% url 'post_update' pk=post.pk %}">
+    <span><i class="fas fa-edit"></i></span></a>
+
+  <a class="btn btn-danger" href="{% url 'post_delete' pk=post.pk %}">
+    <span><i class="fas fa-trash-alt"></i></span></a>
+
+{% endif %}
+
+<hr>
+<div class="card">
+  <div class="container card-body">
+  <a class="btn btn-primary float-right" href="{% url 'add_comment_to_post' pk=post.pk %}">Comment
+  <span><i class="fas fa-comment"></i></span></a>
+
+    {% for comment in post.comments.all %}
+    <br>
+      {% if user.is_authenticated or comment.approved_comments %}
+        <p>{{ comment.date_create }}</p>
+        <p><em>{{comment.text|safe|linebreaksbr}}</em></p>
+        <p>Posted by: {{comment.author}}</p>
+
+        {% if not comment.approved_comments %}
+          <a class="btn btn-success" href="{% url 'approve_comment' pk=comment.pk %}">
+            approve</a>
+
+          <a class="btn btn-danger" href="{% url 'comment_remove' pk=comment.pk %}">
+            <span><i class="far fa-trash-alt"></i></span></a>
+        {% endif %}
+      {% endif %}
+
+      {% empty %}
+      <p>No Comments yet!</p>
+
+
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'CSS/blog.css' %}">
+    <title>Usher's blog | all you need to know about the world</title>
+  </head>
+
+  <body class="loader">
+
+    <nav class="navbar navbar-expand-lg techfont custom_brand" style="background: rgb(200, 240, 230);">
+      <div class="container">
+        <a class="navbar-brand bigbrand" href="{% url 'post_list' %}">BLOG</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'post_list' %}"><span><i class="fas fa-home"></i></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.github.com">GitHub</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.linkedin.com">LinkedIn</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav float-right">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'post_draft_list' %}">Drafts</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'post_new' %}" class="nav-link">New Post</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'logout' %}" class="nav-link">logout</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">Welcome {{ user.username }}</a>
+                </li>
+
+                {% else %}
+                <li class="nav-item">
+                  <a href="{% url 'login' %}" class="nav-link">login <span><i class="fas fa-sign-in-alt"></i></span></a>
+                </li>
+
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="post_blog">
+          {% block body_block %}
+
+          {% endblock %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
